@@ -38,15 +38,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Documentation, Code Quality, Deliverables and Deadlines
 * Responsibilities: Integration
 
-### Jean Doe
+### Lei Jianwen
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jianwen0451.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/Jianwen0451)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Developer, Java Expert
+* Responsibilities: In charge of functionality of the Software
 
 ### James Doe
 
