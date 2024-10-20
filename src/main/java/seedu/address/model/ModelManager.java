@@ -81,6 +81,11 @@ public class ModelManager implements Model {
         userPrefs.setArchivedAddressBookFilePath(archivedAddressBookFilePath);
     }
 
+    @Override
+    public Path getArchivedAddressBookFilePath(){
+        return userPrefs.getArchivedAddressBookFilePath();
+    }
+
     //=========== AddressBook ================================================================================
 
     @Override

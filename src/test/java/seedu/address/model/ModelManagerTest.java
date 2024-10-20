@@ -73,6 +73,18 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void setArchivedAddressBookFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setArchivedAddressBookFilePath(null));
+    }
+
+    @Test
+    public void setArchivedAddressBookFilePath_validPath_setsAddressBookFilePath() {
+        Path path = Paths.get("address/book/file/path");
+        modelManager.setArchivedAddressBookFilePath(path);
+        assertEquals(path, modelManager.getArchivedAddressBookFilePath());
+    }
+
+    @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
     }
