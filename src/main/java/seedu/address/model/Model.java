@@ -45,6 +45,11 @@ public interface Model {
     void setAddressBookFilePath(Path addressBookFilePath);
 
     /**
+     * Sets the user prefs' archive address book file path.
+     * */
+    void setArchivedAddressBookFilePath(Path archiveAddressBookFilePath);
+
+    /**
      * Replaces address book data with the data in {@code addressBook}.
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
