@@ -10,29 +10,29 @@ import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.ArchivePathChangeCommand;
+import seedu.address.logic.commands.FilePathChangeCommand;
 
-public class ArchivePathChangeCommandParserTest {
-    private ArchivePathChangeCommandParser parser = new ArchivePathChangeCommandParser();
+public class FilePathChangeCommandParserTest {
+    private FilePathChangeCommandParser parser = new FilePathChangeCommandParser();
     private String invalidPath = " pa/aaa";
     private String validPath = " pa/myfile.json";
     private Path path = Paths.get("myfile.json");
 
     @Test
     public void missing_path() {
-        assertParseFailure(parser, ArchivePathChangeCommand.COMMAND_WORD, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                ArchivePathChangeCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, FilePathChangeCommand.COMMAND_WORD, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FilePathChangeCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void invalid_path() {
-        assertParseFailure(parser, ArchivePathChangeCommand.COMMAND_WORD + invalidPath, MESSAGE_INVALID_PATH);
+        assertParseFailure(parser, FilePathChangeCommand.COMMAND_WORD + invalidPath, MESSAGE_INVALID_PATH);
     }
 
     @Test
     public void valid_path() {
-        assertParseSuccess(parser, ArchivePathChangeCommand.COMMAND_WORD + validPath,
-                new ArchivePathChangeCommand(path));
+        assertParseSuccess(parser, FilePathChangeCommand.COMMAND_WORD + validPath,
+                new FilePathChangeCommand(path));
     }
 
 }

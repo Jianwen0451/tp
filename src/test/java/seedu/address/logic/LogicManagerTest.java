@@ -7,12 +7,14 @@ import static seedu.address.logic.commands.CommandTestUtil.GENDER_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PATH;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.AMY;
 
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,7 +22,9 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ArchiveCommand;
+import seedu.address.logic.commands.ArchivePathChangeCommand;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.FilePathChangeCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -43,6 +47,7 @@ public class LogicManagerTest {
 
     private Model model = new ModelManager();
     private Logic logic;
+    private StorageManager storage;
 
     @BeforeEach
     public void setUp() {
@@ -50,7 +55,7 @@ public class LogicManagerTest {
                 new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"),
                         temporaryFolder.resolve("addressBookArchive.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -76,6 +81,24 @@ public class LogicManagerTest {
     public void execute_validArchiveCommand_success() throws Exception {
         String archiveCommand = ArchiveCommand.COMMAND_WORD;
         assertCommandSuccess(archiveCommand, ArchiveCommand.MESSAGE_SUCCESS, model);
+    }
+
+    @Test
+    public void execute_validFilePathChangeCommand_success() throws Exception {
+        String filePath = "data/file.json";
+        String filePathChangeCommand = FilePathChangeCommand.COMMAND_WORD + " " + PREFIX_PATH + filePath;
+        assertCommandSuccess(filePathChangeCommand,
+                String.format(FilePathChangeCommand.MESSAGE_SUCCESS, filePath), model);
+        assertEquals(logic.getStorage().getAddressBookFilePath(), Paths.get(filePath));
+    }
+
+    @Test
+    public void execute_validArchivePathChangeCommand_success() throws Exception {
+        String archivePath = "data/file.json";
+        String archivePathChangeCommand = ArchivePathChangeCommand.COMMAND_WORD + " " + PREFIX_PATH + archivePath;
+        assertCommandSuccess(archivePathChangeCommand,
+                String.format(ArchivePathChangeCommand.MESSAGE_SUCCESS, archivePath), model);
+        assertEquals(logic.getStorage().getArchivedAddressBookFilePath(), Paths.get(archivePath));
     }
 
     @Test

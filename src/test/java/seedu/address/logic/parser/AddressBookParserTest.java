@@ -24,6 +24,7 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FilePathChangeCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
@@ -63,6 +64,14 @@ public class AddressBookParserTest {
         Path newPath = Paths.get(input);
         assertEquals(parser.parseCommand(ArchivePathChangeCommand.COMMAND_WORD + " " + PREFIX_PATH + input),
                 new ArchivePathChangeCommand(newPath));
+    }
+
+    @Test
+    public void parseCommand_filePathChange() throws Exception {
+        String input = "file/myfile.json";
+        Path newPath = Paths.get(input);
+        assertEquals(parser.parseCommand(FilePathChangeCommand.COMMAND_WORD + " " + PREFIX_PATH + input),
+                new FilePathChangeCommand(newPath));
     }
 
     @Test
