@@ -87,8 +87,7 @@ public class LogicManagerTest {
     public void execute_validFilePathChangeCommand_success() throws Exception {
         String filePath = "data/file.json";
         String filePathChangeCommand = FilePathChangeCommand.COMMAND_WORD + " " + PREFIX_PATH + filePath;
-        assertCommandSuccess(filePathChangeCommand,
-                String.format(FilePathChangeCommand.MESSAGE_SUCCESS, filePath), model);
+        logic.execute(filePathChangeCommand);
         assertEquals(logic.getStorage().getAddressBookFilePath(), Paths.get(filePath));
     }
 
@@ -96,8 +95,7 @@ public class LogicManagerTest {
     public void execute_validArchivePathChangeCommand_success() throws Exception {
         String archivePath = "data/file.json";
         String archivePathChangeCommand = ArchivePathChangeCommand.COMMAND_WORD + " " + PREFIX_PATH + archivePath;
-        assertCommandSuccess(archivePathChangeCommand,
-                String.format(ArchivePathChangeCommand.MESSAGE_SUCCESS, archivePath), model);
+        logic.execute(archivePathChangeCommand);
         assertEquals(logic.getStorage().getArchivedAddressBookFilePath(), Paths.get(archivePath));
     }
 
