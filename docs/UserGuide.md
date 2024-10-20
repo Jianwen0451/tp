@@ -145,6 +145,32 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Archiving data files `archive`
+
+AddressBook data will be archived as a JSON file`
+[JAR file location]/archived/archivedaddressbook.json`.
+
+Format: `archive`
+
+All the entries in the current address book will be cleared.
+
+### Setting the storage file path `filepath`
+Change the current address book to another one
+
+Format: `filepath pa/Path to a json file`
+
+Example: `filepath pa/data/myaddressbook.json`
+
+The GUI will show the new address book once this command is used. An empty address book will be shown on GUI if the path does not lead to an existing address book file.
+
+### Setting the archive file path `archivepath`
+Change the archive path of the address book to another one
+
+Format: `archivepath pa/Path to a json file`
+
+Example: `archivepath pa/archived/myaddressbook.json`
+
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -169,12 +195,6 @@ AddressBook data are saved automatically as a JSON file `[JAR file location]/dat
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
-
-### Archiving data files `archive`
-
-AddressBook data will be archived as a JSON file `[JAR file location]/archived/archivedaddressbook.json`.
-
-All the entries in the current address book will be cleared.
 
 --------------------------------------------------------------------------------------------------------------------
 
