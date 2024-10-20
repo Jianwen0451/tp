@@ -82,7 +82,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getArchivedAddressBookFilePath(){
+    public Path getArchivedAddressBookFilePath() {
         return userPrefs.getArchivedAddressBookFilePath();
     }
 

@@ -1,10 +1,14 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_PATH;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -130,5 +134,28 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String path} into a {@code Path}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Path} is invalid.
+     */
+    public static Path parsePath(String path) throws ParseException {
+        requireNonNull(path);
+        String trimmedPath = path.trim();
+        if (!isValidPath(path)) {
+            throw new ParseException(MESSAGE_INVALID_PATH);
+        }
+        return Paths.get(trimmedPath);
+    }
+
+    /**
+     * Check if the path string is valid
+     */
+    private static boolean isValidPath(String path) {
+        String regex = "^(?!\\.json$).+\\.json$";
+        return Pattern.matches(regex, path);
     }
 }
