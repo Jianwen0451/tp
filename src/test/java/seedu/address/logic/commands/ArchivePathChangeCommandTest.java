@@ -1,7 +1,9 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 import java.nio.file.Path;
@@ -35,8 +37,11 @@ public class ArchivePathChangeCommandTest {
         Path path1 = Paths.get("mybook.json");
         Path path2 = Paths.get("mybook.json");
         Path path3 = Paths.get("yourbook.json");
+        ArchivePathChangeCommand command = new ArchivePathChangeCommand(path1);
 
         assertEquals(new ArchivePathChangeCommand(path1), new ArchivePathChangeCommand(path2));
+        assertTrue(command.equals(command));
+        assertFalse(command.equals(1));
         assertNotEquals(new ArchivePathChangeCommand(path1), new ArchivePathChangeCommand(path3));
     }
 
