@@ -2,6 +2,9 @@
 layout: page
 title: Developer Guide
 ---
+
+<img src="images/StoreClass-Logo.png" width="600px">
+
 * Table of Contents
 {:toc}
 
