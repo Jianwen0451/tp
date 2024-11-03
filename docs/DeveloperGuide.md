@@ -3,7 +3,7 @@ layout: page
 title: Developer Guide
 ---
 
-<img src="images/StoreClass-Logo.png" width="600px">
+![Logo](images/StoreClass-Logo.png)
 
 * Table of Contents
 {:toc}
